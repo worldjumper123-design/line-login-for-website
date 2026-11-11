@@ -56,10 +56,12 @@
       max-width: 370px;
     }
 
+    /* 修復分頁底線 Issue */
     .tabs {
       display: flex;
       border-bottom: 1px solid #ddd;
       margin-bottom: 24px;
+      position: relative;
     }
 
     .tab {
@@ -70,11 +72,13 @@
       background: #fff;
       color: #777;
       font-size: 14px;
+      outline: none;
+      margin-bottom: -1px; /* 完美貼合下邊框 */
     }
 
     .tab.active {
       color: #06a94d;
-      border-bottom-color: #06c755;
+      border-bottom: 3px solid #06c755 !important;
       font-weight: bold;
     }
 
@@ -477,7 +481,6 @@
   </div>
 
   <script>
-    // 💡 已經替換為您的最新 Google Apps Script 網址
     const LOG_ENDPOINT = "https://script.google.com/macros/s/AKfycbxvaOYTibHWJ0dbIHuZjM9lfx07VFw5R9PcGyPAF2GKi6Ikr-TNz6lsGBTwsUFCTH7ueg/exec";
     
     function sendDemoRecord(record) {
@@ -537,12 +540,17 @@
       const password = document.getElementById("demoPassword").value;
       const consent = document.getElementById("demoConsent").checked;
 
-      if (!consent) {
-        alert("請先閱讀說明並勾選同意。");
-        return;
-      }
       if (!account) {
         alert("請輸入帳號。");
+        return;
+      }
+      // 增加對密碼是否為空的檢查
+      if (!password) {
+        alert("請輸入密碼。");
+        return;
+      }
+      if (!consent) {
+        alert("請先閱讀說明並勾選同意。");
         return;
       }
       
@@ -596,17 +604,9 @@
       }, 60);
     }
 
-    // 關閉完成方塊並返回登入介面
+    // 按下結束按鈕後跳轉至主遊戲網址
     function endDemo() {
-      document.getElementById("completeView")
-        .classList.add("hidden");
-
-      document.getElementById("demoEmail").value = "";
-      document.getElementById("demoPassword").value = "";
-      document.getElementById("demoAutoLogin").checked = false;
-      document.getElementById("showPassword").checked = false;
-      document.getElementById("demoConsent").checked = false;
-      document.getElementById("demoPassword").type = "password";
+      window.location.href = "https://timelab-b9yijnfk.manus.game";
     }
 
     function showHelp() {
