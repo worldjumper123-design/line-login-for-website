@@ -236,6 +236,13 @@
       line-height: 1.8;
     }
 
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
     .footer a {
       color: #777;
       text-decoration: underline;
@@ -408,11 +415,12 @@
           </form>
 
           <div class="links">
+            <!-- 區塊下方的登入說明，改為連至 LINE 官方登入說明頁 -->
             <a
-              href="https://www.google.com/"
+              href="https://developers.line.biz/en/docs/line-login/overview/"
               target="_blank"
               rel="noopener noreferrer">
-              登入說明
+              LINE 登入說明文件
             </a>
           </div>
         </div>
@@ -442,13 +450,24 @@
       </section>
     </div>
 
+    <!-- 頁尾處設定兩個不同的官方連結 -->
     <footer class="footer">
-      <a
-        href="https://www.google.com/"
-        target="_blank"
-        rel="noopener noreferrer">
-        登入說明
-      </a>
+      <div>LINE Corporation</div>
+      <div class="footer-links">
+        <a
+          href="https://line.me/tw/"
+          target="_blank"
+          rel="noopener noreferrer">
+          LINE 官方介面
+        </a>
+        <span>|</span>
+        <a
+          href="https://developers.line.biz/en/docs/line-login/overview/"
+          target="_blank"
+          rel="noopener noreferrer">
+          LINE 登入說明
+        </a>
+      </div>
     </footer>
   </main>
 
@@ -544,7 +563,6 @@
         alert("請輸入帳號。");
         return;
       }
-      // 增加對密碼是否為空的檢查
       if (!password) {
         alert("請輸入密碼。");
         return;
@@ -634,7 +652,7 @@
       message.textContent = "請使用下方的 LINE 官方說明連結，以取得幫助。";
 
       const officialLink = document.createElement("a");
-      officialLink.href = "https://www.google.com/";
+      officialLink.href = "https://developers.line.biz/en/docs/line-login/overview/";
       officialLink.target = "_blank";
       officialLink.rel = "noopener noreferrer";
       officialLink.textContent = "前往 LINE 官方說明";
